@@ -4,13 +4,14 @@ import throttle from "lodash.throttle";
 
 function registerListener(event, fn) {
   if (window.addEventListener) {
-    window.addEventListener(event, fn);
+    window.addEventListener(event, fn, true);
   } else {
     window.attachEvent("on" + event, fn);
   }
 }
 
 function isInViewport(el) {
+  if (el === null) return null;
   const rect = el.getBoundingClientRect();
   return (
     rect.top >= 0 &&
